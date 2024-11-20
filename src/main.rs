@@ -3,6 +3,11 @@ use walkdir::WalkDir;
 
 fn main() {
     let status = Command::new("git")
+        .args(["config", "--global", "core.protectNTFS", "false"])
+        .status()
+        .unwrap();
+    assert!(status.success());
+    let status = Command::new("git")
         .args(["clone", "https://github.com/g-plane/pretty_yaml.git"])
         .status()
         .unwrap();
